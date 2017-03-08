@@ -12,17 +12,17 @@ bool Log::init_flag = false;
 bool Log::falg_exist = false;
 QMutex* Log::file_mutex = new QMutex;
 
-Log* Log::initance()//初始化日志类
+Log* Log::initance()//init
 {
 	file_mutex->lock();
-	if (!init_flag)//是否已经初始化，文件名字只确定一次
+	if (!init_flag)//init or not,here make it just init once
 	{
 		
 		QString temp_path = QCoreApplication::applicationDirPath();
 
 		QDir *temp_dir = new QDir;
 
-		QString dir_whole_path = temp_path + "\\" + QStringLiteral("日志");
+		QString dir_whole_path = temp_path + "\\" + QStringLiteral("LOG");
 		if (temp_dir->exists(dir_whole_path))
 		{
 			QString temp_filename = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss") + ".log";

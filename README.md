@@ -33,5 +33,5 @@ When used as follows: LOG<< LOG_E<< LOG_W<< LOG_B<<
 
 (log file will be automatically added at the beginning of the NORMAL ERROR WARNING BACKUP mark)
 
-Defect: can only follow a parameter (const Qstring), not with multiple parameters, can not use endl. At the end of each line will automatically add a newline.
+Defect: it can only follow a parameter (const Qstring), not with multiple parameters, can not use endl. At the end of each line it will automatically add wrap.
                                                      

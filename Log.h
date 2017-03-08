@@ -1,7 +1,7 @@
 
 #pragma once
 
-#pragma execution_character_set("utf-8")//中文支持
+#pragma execution_character_set("utf-8")//support chinese
 
 #include <QString>
 #include <QTextStream>
@@ -9,10 +9,10 @@
 #include <QMutex>
 using namespace std;
 
-#define NORMAL_FLAG "NORMAL: "//4种日志输出标志
-#define ERROR_FLAG "ERROR: "
-#define WARNING_FLAG "WARNING: "
-#define BACKUP_FLAG "BACKUP: "
+#define NORMAL_FLAG    "NORMAL: "//4 types of Log grade
+#define ERROR_FLAG     "ERROR: "
+#define WARNING_FLAG   "WARNING: "
+#define BACKUP_FLAG    "BACKUP: "
 
 
 #define LOG         HandLog::GetLogHandle(NORMAL_FLAG)
@@ -20,13 +20,8 @@ using namespace std;
 #define LOG_W       HandLog::GetLogHandle(WARNING_FLAG)
 #define LOG_B       HandLog::GetLogHandle(BACKUP_FLAG)
 
-//使用LOG<<  LOG_E<<  LOG_W<<  LOG_B<<  即可完成输出
-//注意：输出不能叠加，智能输出一次，不用添加换行，行尾自动添加
 
-//这里使用了单例模式进行设计，避免重复定义
-//程书雷 20170307
-
-class Log 
+class Log //use Singleton pattern
 {
 protected:
 	Log(){}
@@ -42,18 +37,18 @@ public:
 
 	static QMutex* file_mutex;
 	static bool falg_exist;
-	inline QTextStream& operator<<(const QString &str) //定义重载函数,输出
+	inline QTextStream& operator<<(const QString &str) //overload <<
 	{
-		file_mutex->lock();//加锁，防止同时写入
+		file_mutex->lock();//lock,avoid write at same time
 		QFile file(file_path);
-		if (file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) //以文本文式追加写入
+		if (file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) 
 		{
 			out = new QTextStream(&file);
 			if (!falg_exist)
 			{
-				if (str == NORMAL_FLAG || str == ERROR_FLAG || str == WARNING_FLAG || str == BACKUP_FLAG)//4种日志输出标志
+				if (str == NORMAL_FLAG || str == ERROR_FLAG || str == WARNING_FLAG || str == BACKUP_FLAG)
 				{
-					falg_exist = true;//避免重复输出4种输出标志
+					falg_exist = true;//avoid output log mark more times
 					*out << str;
 				}
 			}
@@ -61,8 +56,8 @@ public:
 			{
 				if (str != NORMAL_FLAG && str != ERROR_FLAG && str != WARNING_FLAG && str != BACKUP_FLAG)
 				{
-					*out << str << endl;//注意这里自动添加换行
-					falg_exist = false;//避免重复输出4种输出标志
+					*out << str << endl;//here add wrap
+					falg_exist = false;
 				}
 			}
 			file.close();
@@ -80,7 +75,7 @@ class HandLog
 {
 public:
 
-	static Log GetLogHandle(QString temp_str)//输出日志标志
+	static Log GetLogHandle(QString temp_str)//output log mark
 	{
 		Log * log_system = Log::initance();
 		*log_system << temp_str;

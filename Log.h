@@ -10,9 +10,9 @@
 using namespace std;
 
 #define NORMAL_FLAG "NORMAL: "//4种日志输出标志
-#define ERROR_FLAG "NORMAL: "
-#define WARNING_FLAG "NORMAL: "
-#define BACKUP_FLAG "NORMAL: "
+#define ERROR_FLAG "ERROR: "
+#define WARNING_FLAG "WARNING: "
+#define BACKUP_FLAG "BACKUP: "
 
 
 #define LOG         HandLog::GetLogHandle(NORMAL_FLAG)
@@ -61,7 +61,6 @@ public:
 			{
 				if (str != NORMAL_FLAG && str != ERROR_FLAG && str != WARNING_FLAG && str != BACKUP_FLAG)
 				{
-					//*out << str << endl;//注意这里自动添加换行
 					*out << str << endl;//注意这里自动添加换行
 					falg_exist = false;//避免重复输出4种输出标志
 				}

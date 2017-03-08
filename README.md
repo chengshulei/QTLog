@@ -3,7 +3,7 @@
 
 该日志库是在QT下面使用的。
 支持中文，支持多线程。
-日志文件保存在执行文件同目录下：./日志/
+日志文件保存在执行文件同目录下：./LOG/
 
 日志文件命名方式如下：年月日_时分秒.log
 
@@ -24,7 +24,7 @@ The log library is used below QT.
 Support Chinese, support multi-thread.
 The log file is saved in the executable files under the same directory
 
-The following log file name: YYYYMMDD_hhmmss.Log
+The following log file name: YearMonthDay_hourminutesecond.Log
 
 Create a log file every time you open the software
 Contains the fourth grade: NORMAL ERROR WARNING BACKUP ,match to LOG LOG_E LOG_W LOG_B

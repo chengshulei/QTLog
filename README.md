@@ -21,13 +21,17 @@
 
 
 The log library is used below QT.
-Support Chinese, support multithreading.
-The log file is saved in the executable files under the same directory: / / log
-The following log file name: date of _ when.Log
+Support Chinese, support multi-thread.
+The log file is saved in the executable files under the same directory
+
+The following log file name: YYYYMMDD_hhmmss.Log
+
 Create a log file every time you open the software
-Contains the fourth grade: NORMAL ERROR WARNING BACKUP log LOG LOG_E LOG_W LOG_B, respectively
-Library usage: in any place, including the Log.h file can be, do not need to set
-When used as follows: LOG<< ~ LOG_B<<
-(log file will be automatically added at the beginning of the NORMAL ~ BACKUP mark)
+Contains the fourth grade: NORMAL ERROR WARNING BACKUP ,match to LOG LOG_E LOG_W LOG_B
+Library usage: in any place, just includ the Log.h,exceptit, don't need to do other.
+When used as follows: LOG<< LOG_E<< LOG_W<< LOG_B<<
+
+(log file will be automatically added at the beginning of the NORMAL ERROR WARNING BACKUP mark)
+
 Defect: can only follow a parameter (const Qstring), not with multiple parameters, can not use endl. At the end of each line will automatically add a newline.
                                                      

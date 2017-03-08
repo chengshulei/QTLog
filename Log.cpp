@@ -25,7 +25,7 @@ Log* Log::initance()//初始化日志类
 		QString dir_whole_path = temp_path + "\\" + QStringLiteral("日志");
 		if (temp_dir->exists(dir_whole_path))
 		{
-			QString temp_filename = QDateTime::currentDateTime().toString("yymmdd_hhmmss") + ".log";
+			QString temp_filename = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss") + ".log";
 			QString file_whole_path = dir_whole_path + "\\" + temp_filename;
 
 			file_path = file_whole_path;
